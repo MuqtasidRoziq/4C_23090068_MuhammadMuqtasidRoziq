@@ -13,9 +13,6 @@ public class designInventaris extends javax.swing.JFrame {
     public designInventaris() {
         initComponents();
         tblInventaris.setModel(pb);
-        btnAddItem.addActionListener(e -> showAddItemDialog());
-        btnEditItem.addActionListener(e -> showEditItemDialog());
-        btnDeleteItem.addActionListener(e -> deleteItem());
         resizeListener();
     }
 
@@ -41,14 +38,12 @@ public class designInventaris extends javax.swing.JFrame {
             tblInventaris.setRowHeight(27);
         }
     }
-    
-        // Menampilkan dialog untuk menambah barang
+        
     private void showAddItemDialog() {
         selectedRow = -1;
         showItemDialog("Tambah Barang", "", "", 0);
     }
 
-    // Menampilkan dialog untuk mengedit barang
     private void showEditItemDialog() {
         int row = tblInventaris.getSelectedRow();
         if (row == -1) {
@@ -82,8 +77,7 @@ public class designInventaris extends javax.swing.JFrame {
             saveItem(txtNama.getText(), txtJumlah.getText(), (String) cmbKeadaan.getSelectedItem());
         }
     }
-    
-        // Menyimpan data (Tambah/Edit)
+
     private void saveItem(String nama, String jumlahText, String keadaan) {
         if (nama.trim().isEmpty() || jumlahText.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua field harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -101,13 +95,12 @@ public class designInventaris extends javax.swing.JFrame {
 
         barang b = new barang(nama, jumlah, keadaan);
         if (selectedRow == -1) {
-            pb.add(b); // Tambah data baru
+            pb.add(b);
         } else {
-            pb.set(selectedRow, b); // Edit data yang sudah ada
+            pb.set(selectedRow, b);
         }
     }
-    
-        // Menghapus barang dari tabel
+
     private void deleteItem() {
         int row = tblInventaris.getSelectedRow();
         if (row == -1) {
@@ -214,15 +207,15 @@ public class designInventaris extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        
+        showAddItemDialog();
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void btnEditItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditItemActionPerformed
-        // TODO add your handling code here:
+        showEditItemDialog();
     }//GEN-LAST:event_btnEditItemActionPerformed
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
-        // TODO add your handling code here:
+        deleteItem();
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     public static void main(String args[]) {
