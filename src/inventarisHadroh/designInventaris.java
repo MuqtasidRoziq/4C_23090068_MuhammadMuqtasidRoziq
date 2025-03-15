@@ -38,25 +38,7 @@ public class designInventaris extends javax.swing.JFrame {
             tblInventaris.setRowHeight(27);
         }
     }
-        
-    private void showAddItemDialog() {
-        selectedRow = -1;
-        showItemDialog("Tambah Barang", "", "", 0);
-    }
 
-    private void showEditItemDialog() {
-        int row = tblInventaris.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih barang yang akan diedit!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        barang b = pb.get(row);
-        selectedRow = row;
-        showItemDialog("Edit Barang", b.getNamaBarang(), String.valueOf(b.getJumlahBarang()), b.getKeadaanBarang().equals("Rusak") ? 1 : b.getKeadaanBarang().equals("Hilang") ? 2 : 0);
-    }
-        
-         // Menampilkan dialog untuk tambah/edit barang
     private void showItemDialog(String title, String nama, String jumlah, int keadaanIndex) {
         JTextField txtNama = new JTextField(nama, 20);
         JTextField txtJumlah = new JTextField(jumlah, 5);
@@ -95,22 +77,9 @@ public class designInventaris extends javax.swing.JFrame {
 
         barang b = new barang(nama, jumlah, keadaan);
         if (selectedRow == -1) {
-            pb.add(b);
+            pb.tambahBarang(b);
         } else {
-            pb.set(selectedRow, b);
-        }
-    }
-
-    private void deleteItem() {
-        int row = tblInventaris.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih barang yang akan dihapus!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        int confirm = JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus barang ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (confirm == JOptionPane.YES_OPTION) {
-            pb.remove(row);
+            pb.editBarang(selectedRow, b);
         }
     }
 
@@ -207,15 +176,33 @@ public class designInventaris extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        showAddItemDialog();
+        selectedRow = -1;
+        showItemDialog("Tambah Barang", "", "", 0);
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void btnEditItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditItemActionPerformed
-        showEditItemDialog();
+        int row = tblInventaris.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih barang yang akan diedit!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        barang b = pb.get(row);
+        selectedRow = row;
+        showItemDialog("Edit Barang", b.getNamaBarang(), String.valueOf(b.getJumlahBarang()), b.getKeadaanBarang().equals("Rusak") ? 1 : b.getKeadaanBarang().equals("Hilang") ? 2 : 0);
     }//GEN-LAST:event_btnEditItemActionPerformed
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
-        deleteItem();
+        int row = tblInventaris.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih barang yang akan dihapus!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus barang ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            pb.hapusBarang(row);
+        }
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     public static void main(String args[]) {

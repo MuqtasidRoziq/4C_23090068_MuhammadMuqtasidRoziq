@@ -44,22 +44,22 @@ public class penyimpananBarang extends AbstractTableModel {
         }
     }
     
-    public void add(barang b){
+    public void tambahBarang(barang b){
         list.add(b);
         fireTableRowsInserted(getRowCount(), getColumnCount());
     }
     
-    public void set(int i, barang b) {
+    public void editBarang(int i, barang b) {
         if (i >= 0 && i < list.size()) {
             list.set(i, b);
-            fireTableRowsUpdated(i, i); // Update hanya baris yang diubah
+            fireTableRowsUpdated(i, i);
         }
     }
 
-    public void remove(int row) {
+    public void hapusBarang(int row) {
         if (row >= 0 && row < list.size()) {
             list.remove(row);
-            fireTableRowsDeleted(row, row); // Hapus hanya baris yang dihapus
+            fireTableRowsDeleted(row, row); 
         }
     }
 
