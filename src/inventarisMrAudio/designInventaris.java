@@ -1,5 +1,4 @@
-package inventarisHadroh;
-
+package inventarisMrAudio;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.table.TableColumn;
@@ -71,7 +70,7 @@ public class designInventaris extends javax.swing.JFrame {
             jumlah = Integer.parseInt(jumlahText);
             if (jumlah < 0) throw new NumberFormatException();
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Jumlah harus berupa angka positif!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Jumlah harus berupa angka!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -92,7 +91,8 @@ public class designInventaris extends javax.swing.JFrame {
         btnAddItem = new javax.swing.JButton();
         btnEditItem = new javax.swing.JButton();
         btnDeleteItem = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tblInventaris = new javax.swing.JTable();
 
         javax.swing.GroupLayout formAddItemLayout = new javax.swing.GroupLayout(formAddItem.getContentPane());
@@ -108,6 +108,7 @@ public class designInventaris extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnMenus.setBackground(new java.awt.Color(255, 255, 255));
         pnMenus.setPreferredSize(new java.awt.Dimension(150, 458));
 
         btnAddItem.setText("Tambah Barang");
@@ -146,17 +147,33 @@ public class designInventaris extends javax.swing.JFrame {
         pnMenusLayout.setVerticalGroup(
             pnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMenusLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(65, 65, 65)
                 .addComponent(btnAddItem)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditItem)
                 .addGap(18, 18, 18)
                 .addComponent(btnDeleteItem)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnMenus, java.awt.BorderLayout.LINE_START);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
+
+        tblInventaris.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblInventaris.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -168,9 +185,9 @@ public class designInventaris extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblInventaris);
+        jScrollPane2.setViewportView(tblInventaris);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,7 +259,8 @@ public class designInventaris extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JButton btnEditItem;
     private javax.swing.JDialog formAddItem;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnMenus;
     private javax.swing.JTable tblInventaris;
     // End of variables declaration//GEN-END:variables

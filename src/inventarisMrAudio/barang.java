@@ -1,4 +1,4 @@
-package inventarisHadroh;
+package inventarisMrAudio;
 
 public class barang {
     String namaBarang, keadaanBarang; 
